@@ -1,0 +1,480 @@
+/* Custom properties for high-contrast accessibility and clean aesthetic */
+:root {
+  --bg: #0d1117; /* Dark background */
+  --text: #c9d1d9; /* High-contrast light text */
+  --text-heading: #f0f6fc; /* Bright text for headings */
+  --muted: #8b949e;
+  --accent: #58a6ff; /* Accessible blue link color */
+  --accent-hover: #1f6feb;
+  --card-bg: #161b22; /* Slightly lighter card color */
+  --card-border: #30363d;
+  --focus: #f0883e; /* High contrast orange for keyboard focus */
+  --required: #f85149; /* Accessible red for required indicators */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Accessibility: Skip Link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: auto;
+  height: auto;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--focus);
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 9999;
+  outline: none;
+}
+
+/* General Layout Elements */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-heading);
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+nav a[aria-current="page"] {
+  border-bottom: 2px solid var(--accent);
+  color: var(--text-heading);
+}
+
+/* Focus Styling for Keyboard Accessibility */
+a:focus, button:focus, input:focus, textarea:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Main content spacing */
+main {
+  padding: 3rem 0;
+}
+
+section {
+  margin-bottom: 4rem;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-heading);
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #0d1117;
+}
+
+.btn-primary:hover {
+  background-color: #79c0ff;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(88, 166, 255, 0.1);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 2rem 0;
+}
+
+.hero-subtitle {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.hero-bio {
+  max-width: 700px;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Areas of Focus / Highlights Grid */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.highlight-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* About / Skills Layout */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.skills-category {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.skills-list {
+  list-style: square;
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.skills-list li {
+  margin-bottom: 0.5rem;
+}
+
+/* Education / Experience Cards */
+.education-card, .experience-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.timeline {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.institution, .company {
+  color: var(--muted);
+  margin: 0.25rem 0 0.75rem 0;
+}
+
+.certifications-list {
+  padding-left: 1.5rem;
+}
+
+.certifications-list li {
+  margin-bottom: 0.75rem;
+}
+
+/* Projects Layout */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+}
+
+.project-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: rgba(56, 139, 253, 0.15);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge-dev {
+  background-color: rgba(210, 153, 34, 0.15);
+  color: #d29922;
+}
+
+.badge-planned {
+  background-color: rgba(139, 148, 158, 0.15);
+  color: var(--muted);
+}
+
+.project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1.5rem 0;
+}
+
+.tech-tag {
+  background-color: #21262d;
+  border: 1px solid var(--card-border);
+  padding: 0.1rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.badge-status {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Contact Page Layout */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-methods {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-methods li {
+  margin-bottom: 1.5rem;
+}
+
+.contact-label {
+  display: block;
+  font-weight: bold;
+  color: var(--text-heading);
+  margin-bottom: 0.25rem;
+}
+
+.contact-methods a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.contact-methods a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form controls */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 0.5rem;
+}
+
+.required {
+  color: var(--required);
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0d1117;
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.field-hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+}
+
+/* Form status area styling */
+#form-status {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+#form-status:not(.visually-hidden) {
+  display: block;
+  background-color: rgba(56, 139, 253, 0.1);
+  border: 1px solid rgba(56, 139, 253, 0.3);
+}
+
+/* Footer styling */
+footer {
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--card-border);
+  padding: 2rem 0;
+  color: var(--muted);
+  margin-top: auto;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+/* Utilities */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
